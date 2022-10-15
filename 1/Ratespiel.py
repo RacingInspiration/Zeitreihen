@@ -1,13 +1,12 @@
 #number guess
 import random
 
-tries = 0
-imaginedNumber = random.randint(1,20)
+imaginedNumber = random.randint(1,20) #legt eine beliebige Zufallszahl zwischen 1 und 20 fest
 
-print('Hello! My name is Lavon. And what is your name?')
-usersName = input()
+print('Hello! My name is Riddle. And what is your name?')
+user_name = input()
 
-print('Well, ' + usersName + ', I\'ve just imagined a number between 1 and 20. Would you like to try to guess it? You\'ve got three tries.')
+print('Well, ' + user_name + ', I\'ve just imagined a number between 1 and 20. Would you like to try to guess it? You\'ve got three tries.')
 
 for tries in range(3):
     print('Take a guess! Insert your number:')
@@ -18,12 +17,9 @@ for tries in range(3):
     if tryNumber > imaginedNumber:
         print('Your guess is too high.')
     if tryNumber == imaginedNumber:
-        break
+        print('This is right!!! YTou are the winner!')
+        print('Gamer over!')
+        exit()
 
-if tryNumber == imaginedNumber:
-    tries = str(tries + 1)
-    print('Good job, ' + usersName + ', you guessed my number in ' + tries + ' guesses!')
-
-if tryNumber != imaginedNumber:
-    imaginedNumber = str(imaginedNumber)
-    print('The number I was thinking of was ' + imaginedNumber + '. The game is over. Goodbye!')
+print('Hey '+user_name+', unfortunately this time you lost! Sorry!')
+print('Game over!')
