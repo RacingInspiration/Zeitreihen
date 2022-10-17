@@ -17,7 +17,7 @@ for tries in range(3):
     if tryNumber > imaginedNumber:
         print('Your guess is too high.')
     if tryNumber == imaginedNumber:
-        print('This is right!!! YTou are the winner!')
+        print('This is right!!! You are the winner!')
         print('Gamer over!')
         exit()
 
