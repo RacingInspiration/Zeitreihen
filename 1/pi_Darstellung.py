@@ -30,7 +30,7 @@ for i in range(steps):
     winkel = 36 * ziffer
     
     farbe = int(step_color * i) # Farbwert des i-ten Zeichenschritts
-    tu.pencolor(255-farbe,255-farbe, farbe)
+    tu.pencolor(255-farbe,255-farbe, farbe) # rgb
     tu.setheading(winkel)
     tu.forward(2)
     if i % 10_000 == 0 :
