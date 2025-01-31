@@ -37,9 +37,17 @@ df['Farbe'] = df['Summe'].apply(lambda x: 'green' if x > mittelwert else 'red')
 
 # Erstellen der Karte mit Plotly
 fig = px.scatter_mapbox(df, lat="Breitengrad", lon="Längengrad", size="Summe",
-                        hover_name="Ort", hover_data=["Summe"],  # Nur die Summe wird beim Hovern angezeigt
+                        hover_name="Ort", hover_data={"Summe": True},  # Nur die Summe wird beim Hovern angezeigt
                         color="Farbe", color_discrete_map={"green": "green", "red": "red"},
                         zoom=9, height=600, size_max=30)  # size_max steuert die maximale Kreisgröße
+
+# Legende entfernen
+fig.update_layout(showlegend=False)
+
+# Hover-Informationen anpassen
+fig.update_traces(hovertemplate="<b>%{hovertext}</b><br>Summe: %{customdata[0]:.2f}<extra></extra>")
+
+# Kartenstil und Layout anpassen
 fig.update_layout(mapbox_style="open-street-map")
 fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
