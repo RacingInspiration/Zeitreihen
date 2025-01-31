@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import numpy as np
 
 # Daten aus der Tabelle mit korrigierten Koordinaten
 data = {
@@ -35,11 +36,15 @@ mittelwert = df['Summe'].mean()
 # Farbe basierend auf dem Vergleich mit dem Mittelwert setzen
 df['Farbe'] = df['Summe'].apply(lambda x: 'green' if x > mittelwert else 'red')
 
+# Exponentielle Skalierung der Summe für die Kreisgröße
+exponent = 3  # Exponent für die Skalierung (z. B. 2 für quadratische Skalierung)
+df['Summe_skaliert'] = df['Summe'] ** exponent
+
 # Erstellen der Karte mit Plotly
-fig = px.scatter_mapbox(df, lat="Breitengrad", lon="Längengrad", size="Summe",
+fig = px.scatter_mapbox(df, lat="Breitengrad", lon="Längengrad", size="Summe_skaliert",
                         hover_name="Ort", hover_data={"Summe": True},  # Nur die Summe wird beim Hovern angezeigt
                         color="Farbe", color_discrete_map={"green": "green", "red": "red"},
-                        zoom=9, height=600, size_max=30)  # size_max steuert die maximale Kreisgröße
+                        zoom=9, height=600, size_max=50)  # size_max steuert die maximale Kreisgröße
 
 # Legende entfernen
 fig.update_layout(showlegend=False)
