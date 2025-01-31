@@ -29,10 +29,17 @@ wahl_werte = st.multiselect(
 # Summe der gewählten Stimmen berechnen
 df['Summe'] = df[wahl_werte].sum(axis=1)
 
+# Mittelwert der Summe berechnen
+mittelwert = df['Summe'].mean()
+
+# Farbe basierend auf dem Vergleich mit dem Mittelwert setzen
+df['Farbe'] = df['Summe'].apply(lambda x: 'green' if x > mittelwert else 'red')
+
 # Erstellen der Karte mit Plotly
 fig = px.scatter_mapbox(df, lat="Breitengrad", lon="Längengrad", size="Summe",
-                        hover_name="Ort", hover_data=["Einwohnerzahl", "Summe"],
-                        color_discrete_sequence=["green"], zoom=9, height=600)
+                        hover_name="Ort", hover_data=["Summe"],  # Nur die Summe wird beim Hovern angezeigt
+                        color="Farbe", color_discrete_map={"green": "green", "red": "red"},
+                        zoom=9, height=600, size_max=30)  # size_max steuert die maximale Kreisgröße
 fig.update_layout(mapbox_style="open-street-map")
 fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
