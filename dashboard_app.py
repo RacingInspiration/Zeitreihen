@@ -14,7 +14,7 @@ import plotly.graph_objects as go
 st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:", layout="wide")
 
 
-st.title("Sales Streamlit Dashboard")
+st.title("Sales xvvxvxcvxcvdfdfgStreamlit Dashboard")
 st.markdown("version v0.4.1_")
 
 with st.sidebar:
